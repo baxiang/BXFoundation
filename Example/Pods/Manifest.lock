@@ -1,5 +1,5 @@
 PODS:
-  - BXFoundation (0.1.0)
+  - BXFoundation (0.0.1)
 
 DEPENDENCIES:
   - BXFoundation (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BXFoundation: 5a8b9d427e6343e20ce0a4a60951f1f4cf74dcde
+  BXFoundation: 0d6c0dd4c9fafc0877b780136bf1e8e8b9aff586
 
 PODFILE CHECKSUM: 974be2e0efdd10ecbee413ba8d6ef3fed2388736
 
