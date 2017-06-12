@@ -1,0 +1,16 @@
+PODS:
+  - BXFoundation (0.1.0)
+
+DEPENDENCIES:
+  - BXFoundation (from `../`)
+
+EXTERNAL SOURCES:
+  BXFoundation:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BXFoundation: 5a8b9d427e6343e20ce0a4a60951f1f4cf74dcde
+
+PODFILE CHECKSUM: 974be2e0efdd10ecbee413ba8d6ef3fed2388736
+
+COCOAPODS: 1.2.1
