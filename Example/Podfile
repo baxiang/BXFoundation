@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BXFoundation_Example' do
+  pod 'BXFoundation', :path => '../'
+
+  target 'BXFoundation_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
