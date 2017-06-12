@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BXFoundation'
-  s.version          = '0.1.0'
+  s.version="0.0.1"
   s.summary          = 'iOS  Foundation.'
   s.description      = 'Foundation快速开发框架'
   s.homepage         = 'https://github.com/baxiang/BXFoundation'
