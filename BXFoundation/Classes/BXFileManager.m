@@ -10,29 +10,60 @@
 
 @implementation BXFileManager
 #pragma mark - 沙盒目录相关
-+ (NSString *)homeDir {
+
++ (NSURL *)URLForDirectory:(NSSearchPathDirectory)directory
+{
+    return [[NSFileManager defaultManager] URLsForDirectory:directory inDomains:NSUserDomainMask].lastObject;
+}
+
++ (NSString *)pathForDirectory:(NSSearchPathDirectory)directory
+{
+    return [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) firstObject];
+}
++ (NSURL *)homeURL {
+    return [NSURL fileURLWithPath:NSHomeDirectory()];
+}
++ (NSString *)homePath {
     return NSHomeDirectory();
 }
-+ (NSString *)documentsDir {
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+
++ (NSURL *)documentsURL
+{
+    return [self URLForDirectory:NSDocumentDirectory];
 }
 
-+ (NSString *)libraryDir {
-    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];;
++ (NSString *)documentsPath
+{
+    return [self pathForDirectory:NSDocumentDirectory];
 }
 
-+ (NSString *)preferencesDir {
-    NSString *libraryDir = [self libraryDir];
-    return [libraryDir stringByAppendingPathComponent:@"Preferences"];
++ (NSURL *)libraryURL
+{
+    return [self URLForDirectory:NSLibraryDirectory];
 }
 
-+ (NSString *)cachesDir {
-    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
++ (NSString *)libraryPath
+{
+    return [self pathForDirectory:NSLibraryDirectory];
 }
 
-+ (NSString *)tmpDir {
++ (NSURL *)cachesURL
+{
+    return [self URLForDirectory:NSCachesDirectory];
+}
+
++ (NSString *)cachesPath
+{
+    return [self pathForDirectory:NSCachesDirectory];
+}
++ (NSURL *)tmpURL {
+    return [NSURL fileURLWithPath:NSTemporaryDirectory()];
+}
+
++ (NSString *)tmpPath {
     return NSTemporaryDirectory();
 }
+
 #pragma mark - 遍历文件夹
 + (NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep {
     NSArray *listArr;
@@ -59,23 +90,23 @@
 }
 
 + (NSArray *)listFilesInHomeDirectoryByDeep:(BOOL)deep {
-    return [self listFilesInDirectoryAtPath:[self homeDir] deep:deep];
+    return [self listFilesInDirectoryAtPath:[BXFileManager homePath] deep:deep];
 }
 
 + (NSArray *)listFilesInLibraryDirectoryByDeep:(BOOL)deep {
-    return [self listFilesInDirectoryAtPath:[self libraryDir] deep:deep];
+    return [self listFilesInDirectoryAtPath:[BXFileManager libraryPath] deep:deep];
 }
 
 + (NSArray *)listFilesInDocumentDirectoryByDeep:(BOOL)deep {
-    return [self listFilesInDirectoryAtPath:[self documentsDir] deep:deep];
+    return [self listFilesInDirectoryAtPath:[BXFileManager documentsPath] deep:deep];
 }
 
 + (NSArray *)listFilesInTmpDirectoryByDeep:(BOOL)deep {
-    return [self listFilesInDirectoryAtPath:[self tmpDir] deep:deep];
+    return [self listFilesInDirectoryAtPath:[BXFileManager tmpPath] deep:deep];
 }
 
 + (NSArray *)listFilesInCachesDirectoryByDeep:(BOOL)deep {
-    return [self listFilesInDirectoryAtPath:[self cachesDir] deep:deep];
+    return [self listFilesInDirectoryAtPath:[BXFileManager cachesPath] deep:deep];
 }
 
 #pragma mark - 获取文件属性
@@ -187,7 +218,7 @@
     BOOL isSuccess = YES;
     
     for (NSString *file in subFiles) {
-        NSString *absolutePath = [[self cachesDir] stringByAppendingPathComponent:file];
+        NSString *absolutePath = [[BXFileManager cachesPath] stringByAppendingPathComponent:file];
         isSuccess &= [self removeItemAtPath:absolutePath];
     }
     return isSuccess;
@@ -198,7 +229,7 @@
     BOOL isSuccess = YES;
     
     for (NSString *file in subFiles) {
-        NSString *absolutePath = [[self tmpDir] stringByAppendingPathComponent:file];
+        NSString *absolutePath = [[BXFileManager tmpPath] stringByAppendingPathComponent:file];
         isSuccess &= [self removeItemAtPath:absolutePath];
     }
     return isSuccess;

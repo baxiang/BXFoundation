@@ -15,6 +15,7 @@
 #import "NSData+BXExtension.h"
 #import "NSDate+BXExtension.h"
 #import "NSDictionary+BXExtension.h"
+#import "NSNotificationCenter+BXExtension.h"
 #import "NSString+BXExtension.h"
 
 FOUNDATION_EXPORT double BXFoundationVersionNumber;

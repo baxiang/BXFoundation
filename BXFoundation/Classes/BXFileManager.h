@@ -10,19 +10,75 @@
 
 @interface BXFileManager : NSObject
 #pragma mark - 沙盒目录相关
-// 沙盒的主目录路径
-+ (NSString *)homeDir;
-// 沙盒中Documents的目录路径
-+ (NSString *)documentsDir;
-// 沙盒中Library的目录路径
-+ (NSString *)libraryDir;
-// 沙盒中Libarary/Preferences的目录路径
-+ (NSString *)preferencesDir;
-// 沙盒中Library/Caches的目录路径
-+ (NSString *)cachesDir;
-// 沙盒中tmp的目录路径
-+ (NSString *)tmpDir;
 
+/**
+ Get URL of app sandbox  directory
+
+ @return app directory URL
+ */
++ (NSURL *)homeURL;
+/**
+ Get path of app sandbox  directory
+
+ @return app directory path
+ */
++ (NSString *)homePath;
+
+/**
+ Get URL of Documents directory.
+ 
+ @return Documents directory URL.
+ */
++ (NSURL *)documentsURL;
+
+/**
+ Get path of Documents directory.
+ 
+ @return Documents directory path.
+ */
++ (NSString *)documentsPath;
+
+/**
+ Get URL of Library directory.
+ 
+ @return Library directory URL.
+ */
++ (NSURL *)libraryURL;
+
+/**
+ Get path of Library directory.
+ 
+ @return Library directory path.
+ */
++ (NSString *)libraryPath;
+
+/**
+ Get URL of Caches directory.
+ 
+ @return Caches directory URL.
+ */
++ (NSURL *)cachesURL;
+
+/**
+ Get path of Caches directory.
+ 
+ @return Caches directory path.
+ */
++ (NSString *)cachesPath;
+
+/**
+ Get URL of tmp directory
+
+ @return tmp directory URL
+ */
++ (NSURL *)tmpURL;
+
+/**
+  Get path of tmp directory
+
+ @return tmp directory path
+ */
++ (NSString *)tmpPath;
 #pragma mark - 遍历文件夹
 /**
  文件遍历
